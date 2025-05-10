@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x5f00;&#x673a;&#x753b;&#x9762;&#x7684;&#x5b9a;&#x5236;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="开机画面的定制">开机画面的定制</h1>
+<p>首先需要更改图片的分辨率以适应显示屏幕
+根据其分辨率将图片存储到oem下的图片文件夹
+将图片命名为splash即可(png格式)</p>
+<h1 id="logo">logo</h1>
+<p>设置图片名字为logo，并且开放权限即可--调试-显示机床数据-9112参数置零
+122*19像素
+--缩放图片？</p>
+<h1 id="在界面中绘制水平线与垂直线">在界面中绘制水平线与垂直线</h1>
+<p>使用LOAD方法</p>
+<pre><code>LOAD 
+V_SEPARATOR(290,1,7,1) //添加垂线，x坐标，线的粗细，颜色，线的样式
+H_SEPARATOR(250,1,7,1)//添加水平线
+H_SEPARATOR(150,1,6,1)
+END_LOAD
+
+</code></pre>
+<h1 id="设置入口界面的对话框标题栏">设置入口界面的对话框标题栏</h1>
+<p>注意在easyscreen中选择的界面声明需要正确-注意正常的machine界面入口是
+<code>StartFile04 = area := AreaMachine, dialog := SlMachine, menu := SlMaJogTurnMenuHU, startfile := ma_jog.com</code></p>
+<h1 id="杂项">杂项</h1>
+<p>软键图标分辨率25*25
+获取颜色的方法</p>
+<p>用户变量为 $R[0]</p>
+<p>宽度，长度 10大约为一个数字的宽度</p>
+<p>打印文字的功能与c++类似用 &lt;&lt;变量&lt;&lt; 来显示变量的值</p>
+<p>不知道为什么，软键的定义权限使用传统句法没有问题，但是使用扩展句法之后就会不正常</p>
+<p>注意，如果变量的某些属性的值与其他变量有关，可以使用LOAD方法，以及RNP方法赋值，无需在定义变量的时候赋值</p>
+<p>进度条的边界参数设定，设定的是真实值(最小值+50)，而不是相对值(距离最小值50)</p>
+<p>如果无论如何都找不到问题，可以考虑修改语法(传统，扩展)</p>
+<h2 id="关于方法与功能">关于方法与功能</h2>
+<p>代码的运行顺序--各种方法与功能的执行-没有一个循环进行不断地运行功能-只能通过功能的自身特性实现自身一直的工作</p>
+<h1 id="在menu-select中进入custom区区别于直接按已有按键进入">在menu select中进入custom区(区别于直接按已有按键进入)</h1>
+<p><strong>仍需要在easyscreen中定义出custom区域</strong>
+下面所使用的两个文件中似乎字符串名称不需要双引号
+<strong>需要使用slamconfig.ini文件</strong>
+找到[custom]的区域
+在下面定义按键的图标(放ico下面)
+按键位置
+按键是否可视
+语言文本-可输入<code>&lt;empty&gt;</code>占位或者不写
+按键的名称
+<code>重启后生效</code></p>
+<h2 id="设置custom区主界面">设置custom区主界面</h2>
+<p><strong>使用custom.ini文件</strong>
+在该文件中，貌似只能设置主界面的名称，背景图片和对应的.com文件
+此时需要同步创建.com文件，否则图片无法显示</p>
+<h1 id="口令设置是什么">口令设置是什么</h1>
+<p>口令设置目前看来，就是通过一个函数来接收输入的‘密码’，如果正确，返回TRUE,否则FALSE
+一旦输入密码正确，就已经改变了访问等级--有方法可以重置访问等级，如果重置成功，返回TRUE,否则FALSE
+有默认的访问等级密码-也有可以修改密码的方法</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
